@@ -66,7 +66,7 @@ export default function Navbar() {
     }, [activeSection]);
 
     return (
-        <nav className="flex items-center px-16 py-9 font-mono font-medium">
+        <nav className="sticky top-0 z-50 flex items-center px-30 py-5 font-mono font-medium bg-[#0F0F0F] text-[13px]">
             <div className="flex-1">
                 <p>A. BAYAS</p>
             </div>
@@ -101,7 +101,7 @@ export default function Navbar() {
                 ))}
             </ul>
 
-            <div className="flex flex-1 justify-end items-center gap-4 font-sans font-medium">
+            <div className="flex flex-1 justify-end items-center gap-4 font-inter font-medium">
                 <a
                     href="/alleahbayas-cv.pdf"
                     download

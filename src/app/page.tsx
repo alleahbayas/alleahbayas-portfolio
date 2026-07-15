@@ -6,14 +6,14 @@ import Projects from "@/components/Projects";
 import Experience from "@/components/Experience";
 import Contact from "@/components/Contact";
 
-const mono = JetBrains_Mono({
+const jetBrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  variable: "--font-mono",
+  variable: "--font-jetbrains-mono",
 });
 
-const sans = Inter({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-sans",
+  variable: "--font-inter-sans",
 });
 
 const serif = Playfair_Display({
@@ -29,7 +29,7 @@ const poppins = Poppins({
 
 export default function Main() {
   return (
-    <div className={`${mono.variable} ${sans.variable} ${serif.variable} ${poppins.variable} min-h-screen`}>
+    <div className={`${jetBrainsMono.variable} ${inter.variable} ${serif.variable} ${poppins.variable} min-h-screen font-inter`}>
       <Navbar />
       <Home />
       <About />
