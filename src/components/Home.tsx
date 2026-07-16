@@ -7,8 +7,8 @@ export default function Home() {
                 id="home"
                 className="relative scroll-mt-24 mx-auto flex w-full max-w-7xl flex-col text-center lg:min-h-[calc(100vh-110px)] lg:flex-row lg:items-center lg:justify-between lg:gap-24 lg:px-16 lg:py-0 lg:text-left"
             >
-                {/* IMAGE — fixed-height block on mobile, side card on desktop */}
-                <div className="relative order-1 h-[52vh] min-h-[380px] w-full lg:order-2 lg:flex lg:h-auto lg:w-auto lg:-translate-x-20 lg:flex-col lg:items-center">
+                {/* IMAGE */}
+                <div className="relative order-1 h-[46vh] min-h-[340px] w-full lg:order-2 lg:flex lg:h-auto lg:w-auto lg:-translate-x-20 lg:flex-col lg:items-center">
                     <div className="relative h-full w-full overflow-hidden lg:mx-auto lg:h-[460px] lg:w-[350px] lg:rounded-[2rem]">
                         <Image
                             src="/image1.png"
@@ -17,14 +17,15 @@ export default function Home() {
                             priority
                             className="object-cover"
                         />
-
-                        {/* Fade where the image meets the text below */}
                         <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#0A0A0A] to-transparent lg:h-20 lg:via-[#0A0A0Acc]" />
                     </div>
+
+                    {/* Top-left warm glow — mobile/tablet only, attached to photo */}
+                    <div className="pointer-events-none absolute -left-16 -top-10 h-[220px] w-[220px] rounded-full bg-[#E8A968]/40 blur-[80px] lg:hidden" />
                 </div>
 
-                {/* TEXT — normal flow below the image on mobile, sits on solid dark bg */}
-                <div className="relative order-2 -mt-30 flex flex-col items-center px-6 pb-12 pt-0 lg:order-1 lg:max-w-xl lg:items-start lg:bg-transparent lg:px-0 lg:py-0">
+                {/* TEXT */}
+                <div className="relative order-2 -mt-8 flex flex-col items-center bg-[#0A0A0A] px-6 pb-12 pt-0 lg:order-1 lg:mt-0 lg:max-w-xl lg:items-start lg:bg-transparent lg:px-0 lg:py-0">
                     <p className="font-mono text-xs tracking-[0.2em] text-[#A66B6F] sm:text-sm">
                         MODEL NO. AMGB-2026 | CAVITE, PH
                     </p>
@@ -45,7 +46,7 @@ export default function Home() {
                         client-facing web projects.
                     </p>
 
-                    <div className="mt-8 flex w-full flex-col items-center gap-4 sm:flex-row sm:justify-center lg:mt-12 lg:justify-start lg:gap-6">
+                    <div className="relative mt-8 flex w-full flex-col items-center gap-4 sm:flex-row sm:justify-center lg:mt-12 lg:justify-start lg:gap-6">
                         <a
                             href="#projects"
                             className="flex w-full max-w-xs items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#FB0945] via-[#FF5C8D] to-[#FFE3CD] px-8 py-4 font-inter font-semibold text-black transition hover:scale-[1.02] sm:w-auto"
@@ -70,18 +71,21 @@ export default function Home() {
                         ALLEAH BAYAS | BSCPE | SYSTEM DEVELOPMENT
                     </p>
 
-                    {/* Left Glow */}
-                    <div className="pointer-events-none absolute -left-28 top-[30%] hidden h-[280px] w-[280px] -translate-y-1/2 rounded-full bg-[#FB5A74]/30 blur-[100px] sm:block lg:-left-52 lg:top-[30%] lg:h-[420px] lg:w-[420px] lg:blur-[140px]" />
+                    {/* Bottom-right pink glow — visible on mobile now */}
+                    <div className="pointer-events-none absolute -bottom-16 -right-10 h-[260px] w-[260px] rounded-full bg-[#FFA6C1]/35 blur-[90px] lg:hidden" />
                 </div>
 
                 {/* Desktop label */}
                 <p className="hidden whitespace-nowrap font-mono text-sm tracking-[0.18em] text-[#FFD8D9] lg:absolute lg:bottom-10 lg:right-5 lg:block lg:-translate-x-1/2">
                     ALLEAH BAYAS | BSCPE | SYSTEM DEVELOPMENT
                 </p>
+
+                {/* Desktop-only left glow — positioned against the full section, not the image */}
+                <div className="pointer-events-none absolute -left-52 top-[30%] hidden h-[420px] w-[420px] -translate-y-1/2 rounded-full bg-[#FB5A74]/30 blur-[140px] lg:block" />
             </section>
 
-            {/* Bottom-right Glow */}
-            <div className="pointer-events-none absolute right-0 bottom-[-100px] hidden h-[320px] w-[320px] translate-x-[40px] rounded-full bg-[#FFA6C1]/35 blur-[120px] sm:block lg:bottom-[-200px] lg:h-[450px] lg:w-[450px] lg:translate-x-[70px] lg:blur-[160px]" />
+            {/* Desktop-only bottom-right glow (unchanged) */}
+            <div className="pointer-events-none absolute right-0 bottom-[-200px] hidden h-[450px] w-[450px] translate-x-[70px] rounded-full bg-[#FFA6C1]/35 blur-[160px] lg:block" />
         </div>
     );
 }
