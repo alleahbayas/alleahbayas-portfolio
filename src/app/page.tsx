@@ -31,16 +31,18 @@ export default function Main() {
   return (
     <div className={`${jetBrainsMono.variable} ${inter.variable} ${serif.variable} ${poppins.variable} min-h-screen font-inter`}>
       <Navbar />
-      <Home />
-      <About />
-      <Projects />
-      <Experience />
-      <Contact />
-      <footer className="px-6 py-8 max-w-4xl mx-auto border-t bprder-(--bg-line)]">
-        <p className="text-xs text-(--muted)] font-mono]">
-          Built with Next.js · Deployed on Vercel
-        </p>
-      </footer>
+      <main className="overflow-x-clip">
+        <Home />
+        <About />
+        <Projects />
+        <Experience />
+        <Contact />
+        <footer className="px-6 py-8 max-w-4xl mx-auto border-t border-(--bg-line)]">
+          <p className="text-xs text-(--muted)] font-mono]">
+            Built with Next.js · Deployed on Vercel
+          </p>
+        </footer>
+      </main>
     </div>
   );
 }
