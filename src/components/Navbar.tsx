@@ -85,7 +85,7 @@ export default function Navbar() {
                 </div>
 
                 {/* Desktop nav links */}
-                <ul className="relative hidden md:flex flex-1 justify-center gap-3 md:gap-9 lg:gap-9 xl:gap-9 2xl:gap-15 whitespace-nowrap">
+                <ul className="relative hidden md:flex flex-1 justify-center gap-3 md:gap-9 lg:gap-8 xl:gap-9 2xl:gap-15 whitespace-nowrap">
                     {/* Sliding underline */}
                     <span
                         className="absolute bottom-[-10px] h-0.5 bg-[#FB003F] transition-all duration-300 ease-in-out"
