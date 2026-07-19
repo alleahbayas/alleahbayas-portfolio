@@ -5,7 +5,7 @@ import { ArrowLeft } from "lucide-react";
 
 export default function AllProjects() {
     return (
-        <section className="px-6 py-6 sm:py-16 max-w-7xl mx-auto">
+        <section className="px-6 py-6 sm:py-16 tp:pt-10 tp:pb-16 max-w-7xl mx-auto">
 
             <Link href="/#projects"
               className="font-mono text-sm text-neutral-600 hover:text-[#FFD8D9] flex items-end gap-3 mt-2">
@@ -18,7 +18,7 @@ export default function AllProjects() {
                     worked {" "}</span>on
             </h1>
 
-            <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="mt-6 grid grid-cols-1 md:grid-cols-3 tp:grid-cols-2 gap-6">
                 {projects.map((project) => (
                     <ProjectCard
                         key={project.slug}
