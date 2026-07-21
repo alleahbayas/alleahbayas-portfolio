@@ -37,8 +37,8 @@ export default function Main() {
         <Projects />
         <Experience />
         <Contact />
-        <footer className="px-6 py-8 max-w-4xl mx-auto border-t border-(--bg-line)]">
-          <p className="text-xs text-(--muted)] font-mono]">
+        <footer className="px-6 py-8 max-w-4xl mx-auto border-t border-[var(--bg-line)]">
+          <p className="text-xs text-[var(--muted)] font-mono">
             Built with Next.js · Deployed on Vercel
           </p>
         </footer>
