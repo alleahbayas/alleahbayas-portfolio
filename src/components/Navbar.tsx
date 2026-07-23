@@ -124,8 +124,10 @@ export default function Navbar() {
                 <div className="hidden md:flex sl:flex ml:flex flex-1 flex-shrink-0 justify-end items-center gap-2 md:gap-2 xl:gap-4 sl:gap-1.5 ml:gap-2 font-inter font-medium whitespace-nowrap">
                     <div className="rounded-full bg-gradient-to-r from-[#B8860B] via-[#FFC168] to-[#FFE9B8] dark:bg-none dark:bg-[#FFE3CD] p-[2px] xl:p-[3px]">
                         <a
-                            href="/alleahbayas-cv.pdf"
+                            href="/AlleahBayas_CV.pdf"
                             download
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="block rounded-full bg-background dark:bg-[#0A0A0A] text-foreground px-3 xl:px-5 py-1.5 xl:py-2 text-[10px] md:text-[10px] lg:text-[11px] xl:text-[13px] sl:px-2.5 sl:py-1 sl:text-[12px] ml:px-3 ml:py-1.5 ml:text-[9px] transition-colors duration-300 hover:bg-[#FFE9B8] hover:text-black"
                         >
                             CV
@@ -135,7 +137,7 @@ export default function Navbar() {
                     <div className="rounded-full bg-gradient-to-r from-[#FFE3CD] via-[#FF5C8D] to-[#FB0945] p-[2px] xl:p-[3px]">
                         <a
                             href="#contact"
-                            className="block rounded-full bg-background dark:bg-[#0A0A0A] text-foreground px-3 xl:px-5 py-1.5 xl:py-2 text-[10px] md:text-[10px] lg:text-[11px] xl:text-[13px] sl:px-2.5 sl:py-1 sl:text-[12px] ml:px-3 ml:py-1.5 ml:text-[9px] transition-colors duration-300 hover:bg-[#FFE3CD] hover:text-black"
+                            className="block rounded-full bg-background dark:bg-[#0A0A0A] text-foreground px-3 xl:px-5 py-1.5 xl:py-2 text-[10px] md:text-[10px] lg:text-[11px] xl:text-[13px] sl:px-2.5 sl:py-1 sl:text-[12px] ml:px-3 ml:py-1.5 ml:text-[9px] transition-colors duration-300 hover:bg-gradient-to-r from-[#FFE3CD] via-[#FF5C8D] to-[#FB0945] hover:text-white"
                         >
                             Let's Connect
                         </a>
@@ -218,7 +220,7 @@ export default function Navbar() {
                         <a
                             href="#contact"
                             onClick={() => handleMobileLinkClick("contact")}
-                            className="block text-center rounded-full bg-background dark:bg-[#0A0A0A] text-foreground px-5 py-2 transition-colors duration-300 hover:bg-[#FFE3CD] hover:text-black"
+                            className="block text-center rounded-full bg-background dark:bg-[#0A0A0A] text-foreground px-5 py-2 transition-colors duration-300 hover:bg-gradient-to-r from-[#FFE3CD] via-[#FF5C8D] to-[#FB0945] hover:text-white"
                         >
                             Let's Connect
                         </a>
