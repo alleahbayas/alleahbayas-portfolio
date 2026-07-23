@@ -78,7 +78,7 @@ export default function Contact() {
             </a>
 
             <a
-              href="/Alleah_Bayas_CV.pdf"
+              href="/AlleahBayas_CV.pdf"
               download
               target="_blank"
               rel="noopener noreferrer"

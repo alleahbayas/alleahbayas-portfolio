@@ -206,6 +206,8 @@ export default function Navbar() {
                         <a
                             href="/AlleahBayas_CV.pdf"
                             download
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="block text-center rounded-full bg-background dark:bg-[#0A0A0A] text-foreground px-5 py-2 transition-colors duration-300 hover:bg-[#FFE9B8] hover:text-black"
                         >
                             CV
