@@ -1,4 +1,19 @@
-const features = [
+import { Code, Palette, Layers, Monitor, LucideIcon } from "lucide-react";
+
+const iconMap: Record<string, LucideIcon> = {
+  code: Code,
+  palette: Palette,
+  layers: Layers,
+  monitor: Monitor,
+};
+
+type Feature = {
+  icon: keyof typeof iconMap;
+  title: string;
+  desc: string;
+};
+
+const features: Feature[] = [
   {
     icon: "code",
     title: "Web Development",
@@ -25,10 +40,10 @@ export default function About() {
   return (
     <section 
       id="about" 
-      className="scroll-mt-4 sm:scroll-mt-24 mx-auto max-w-7xl px-4 pt- pb-12 sm:px-6 sm:py-16 lg:grid lg:min-h-[calc(100vh-90px)] lg:place-items-center lg:py-0"
+      className="scroll-mt-4 sm:scroll-mt-24 mx-auto max-w-7xl px-4 pt-8 pb-12 sm:px-6 sm:py-16 tp:px-8 tp:py-14 sl:px-10 sl:py-10 sl:min-h-0 ml:px-6 ml:py-6 ml:min-h-0 lg:grid lg:min-h-[calc(100vh-90px)] lg:place-items-center lg:py-0"
     >
-      <div className="w-full rounded-[1.5rem] border border-white/10 bg-[#141414] p-6 sm:p-8 md:p-10 lg:rounded-[2rem] lg:p-14">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-[2fr_3fr] md:gap-12">
+      <div className="w-full rounded-[1.5rem] border border-white/10 bg-[#141414] p-6 sm:p-8 md:p-10 tp:p-10 sl:p-8 ml:p-5 lg:rounded-[2rem] lg:p-14">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-[2fr_3fr] md:gap-12 tp:gap-8 sl:grid-cols-[2fr_3fr] sl:gap-10 ml:gap-6">
           
           {/*LEFT COLUMN*/}
           <div>
@@ -67,7 +82,7 @@ export default function About() {
           </div>
 
           {/*RIGHT COLUMN*/}
-          <div className="border-t border-white/15 pt-8 md:border-t-0 md:border-l md:pl-12 md:pt-0">      
+          <div className="border-t border-white/15 pt-8 md:border-t-0 md:border-l md:pl-12 md:pt-0 sl:border-t-0 sl:border-l sl:pl-10 sl:pt-0 ml:pt-6">      
             <p className="font-mono text-[12px] text-[#FFA1A3]">
               WHAT I DO
             </p>
@@ -80,25 +95,28 @@ export default function About() {
               <span className="font-serif font-semibold italic bg-gradient-to-r from-[#FFF1D5] to-[#FB003F] bg-clip-text text-transparent">purpose</span>
             </h3>
 
-            <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
-              {features.map((item) => (
-                <div
-                  key={item.title}
-                  className="rounded-2xl border border-white/10 bg-[#0F0F0F] p-5"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#FB5A74]/15 text-[#FF5C8D]">
-                      i
+            <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 tp:gap-4 sl:gap-4 ml:mt-5 ml:gap-3">
+              {features.map((item) => {
+                const Icon = iconMap[item.icon];
+                return (
+                  <div
+                    key={item.title}
+                    className="rounded-2xl border border-white/10 bg-[#0F0F0F] p-5 tp:p-4 sl:p-4 ml:p-4"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#FB5A74]/15 text-[#FF5C8D]">
+                        <Icon size={18} strokeWidth={2} />
+                      </div>
+                      <h4 className="font-inter font-semibold text-white">
+                        {item.title}
+                      </h4>
                     </div>
-                    <h4 className="mt-4 font-inter font-semibold text-white">
-                      {item.title}
-                    </h4>
+                    <p className="mt-2 text-[13px] leading-relaxed text-[#999999]">
+                        {item.desc}
+                      </p>
                   </div>
-                  <p className="mt-2 text-[13px] leading-relaxed text-[#999999]">
-                      {item.desc}
-                    </p>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>

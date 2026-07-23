@@ -57,9 +57,14 @@ export default function Navbar() {
         const activeEl = navRefs.current[activeSection];
 
         if (activeEl) {
+            const isMobileLandscape =
+                typeof window !== "undefined" &&
+                window.matchMedia("(orientation: landscape) and (max-height: 500px)").matches;
+            const underlineWidth = isMobileLandscape ? 24 : 50;
+
             setIndicator({
-                left: activeEl.offsetLeft + (activeEl.offsetWidth - 50) / 2,
-                width: 50,
+                left: activeEl.offsetLeft + (activeEl.offsetWidth - underlineWidth) / 2,
+                width: underlineWidth,
             });
         }
     }, [activeSection]);
@@ -79,13 +84,13 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className="sticky top-0 z-50 hidden md:flex items-center px-6 md:px-6 lg:px-8 xl:px-16 2xl:px-30 py-4 md:py-4 lg:py-5 font-mono font-medium bg-[#0F0F0F] text-[13px]">
+            <nav className="sticky top-0 z-50 hidden md:flex sl:flex ml:flex items-center px-6 md:px-6 lg:px-8 xl:px-16 2xl:px-30 sl:px-8 ml:px-6 py-3 md:py-4 lg:py-5 sl:py-5 ml:py-4 font-mono font-medium bg-[#0F0F0F] text-[13px]">
                 <div className="flex-1 flex-shrink-0">
-                    <p className="whitespace-nowrap text-[11px] md:text-[11px] lg:text-[13px]">A. BAYAS</p>
+                    <p className="whitespace-nowrap text-[11px] md:text-[11px] lg:text-[13px] sl:text-[12px] ml:text-[10px]">A. BAYAS</p>
                 </div>
 
                 {/* Desktop nav links */}
-                <ul className="relative hidden md:flex flex-1 justify-center gap-3 md:gap-9 lg:gap-8 xl:gap-9 2xl:gap-15 whitespace-nowrap">
+                <ul className="relative hidden md:flex sl:flex ml:flex flex-1 justify-center gap-3 ml:gap-9 md:gap-9 lg:gap-8 xl:gap-9 2xl:gap-15 sl:gap-6 whitespace-nowrap pb-1 sl:pb-0 ml:pb-0">
                     {/* Sliding underline */}
                     <span
                         className="absolute bottom-[-10px] h-0.5 bg-[#FB003F] transition-all duration-300 ease-in-out"
@@ -103,7 +108,7 @@ export default function Navbar() {
                                 }}
                                 href={`#${link.id}`}
                                 onClick={() => setActiveSection(link.id)}
-                                className={`relative pb-2 text-[10px] md:text-[10px] lg:text-[11px] xl:text-[13px] transition-colors duration-300 ease-in-out ${
+                                className={`relative inline-block pb-0 sl:pb-1 ml:pb-0.5 text-[10px] md:text-[10px] lg:text-[11px] xl:text-[13px] sl:text-[12px] ml:text-[9px] transition-colors duration-300 ease-in-out ${
                                     activeSection === link.id
                                         ? "text-[#FFF9D2]"
                                         : "text-white"
@@ -116,11 +121,11 @@ export default function Navbar() {
                 </ul>
 
                 {/* Desktop right actions */}
-                <div className="hidden md:flex flex-1 flex-shrink-0 justify-end items-center gap-2 md:gap-2 xl:gap-4 font-inter font-medium whitespace-nowrap">
+                <div className="hidden md:flex sl:flex ml:flex flex-1 flex-shrink-0 justify-end items-center gap-2 md:gap-2 xl:gap-4 sl:gap-1.5 ml:gap-2 font-inter font-medium whitespace-nowrap">
                     <a
                         href="/alleahbayas-cv.pdf"
                         download
-                        className="border-2 xl:border-3 rounded-full border-[#FFE3CD] px-3 xl:px-5 py-1.5 xl:py-2 text-[10px] md:text-[10px] lg:text-[11px] xl:text-[13px] transition-all duration-300 hover:bg-[#FFE3CD] hover:text-black"
+                        className="border-2 xl:border-3 rounded-full border-[#FFE3CD] px-3 xl:px-5 py-1.5 xl:py-2 text-[10px] md:text-[10px] lg:text-[11px] xl:text-[13px] sl:px-2.5 sl:py-1 sl:text-[12px] ml:px-3 ml:py-1.5 ml:text-[9px] transition-all duration-300 hover:bg-[#FFE3CD] hover:text-black"
                     >
                         CV
                     </a>
@@ -128,7 +133,7 @@ export default function Navbar() {
                     <div className="rounded-full bg-gradient-to-r from-[#FFE3CD] via-[#FF5C8D] to-[#FB0945] p-[2px] xl:p-[3px]">
                         <a
                             href="#contact"
-                            className="block rounded-full bg-[#0A0A0A] px-3 xl:px-5 py-1.5 xl:py-2 text-[10px] md:text-[10px] lg:text-[11px] xl:text-[13px] transition-all duration-300 hover:bg-transparent hover:text-black"
+                            className="block rounded-full bg-[#0A0A0A] px-3 xl:px-5 py-1.5 xl:py-2 text-[10px] md:text-[10px] lg:text-[11px] xl:text-[13px] sl:px-2.5 sl:py-1 sl:text-[12px] ml:px-3 ml:py-1.5 ml:text-[9px] transition-all duration-300 hover:bg-transparent hover:text-black"
                         >
                             Let's Connect
                         </a>
@@ -140,7 +145,7 @@ export default function Navbar() {
                 type="button"
                 onClick={() => setMobileOpen(true)}
                 aria-label="Open menu"
-                className={`fixed top-6 right-6 z-50 flex md:hidden flex-col justify-center items-center gap-1.5 w-12 h-12 rounded-full bg-[#0F0F0F] border border-[#FFE3CD]/30 shadow-lg transition-opacity duration-300 ${
+                className={`fixed top-6 right-6 z-50 flex md:hidden sl:hidden ml:hidden flex-col justify-center items-center gap-1.5 w-12 h-12 rounded-full bg-[#0F0F0F] border border-[#FFE3CD]/30 shadow-lg transition-opacity duration-300 ${
                     mobileOpen ? "opacity-0 pointer-events-none" : "opacity-100"
                 }`}
             >
@@ -152,14 +157,14 @@ export default function Navbar() {
             {/* Mobile overlay */}
             <div
                 onClick={() => setMobileOpen(false)}
-                className={`fixed inset-0 z-50 bg-black/60 transition-opacity duration-300 md:hidden ${
+                className={`fixed inset-0 z-50 bg-black/60 transition-opacity duration-300 md:hidden sl:hidden ml:hidden ${
                     mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
                 }`}
             />
 
             {/* Mobile sidebar */}
             <aside
-                className={`fixed top-0 right-0 z-50 h-full w-[75%] max-w-[320px] bg-[#0F0F0F] font-mono text-[13px] shadow-xl transition-transform duration-300 ease-in-out md:hidden ${
+                className={`fixed top-0 right-0 z-50 h-full w-[75%] max-w-[320px] bg-[#0F0F0F] font-mono text-[13px] shadow-xl transition-transform duration-300 ease-in-out md:hidden sl:hidden ml:hidden ${
                     mobileOpen ? "translate-x-0" : "translate-x-full"
                 }`}
             >

@@ -1,8 +1,13 @@
 @import "tailwindcss";
 
+@theme {
+  --breakpoint-md: 1025px;
+}
+
 @custom-variant tp (@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait));
-@custom-variant sl (@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape));
+@custom-variant sl (@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) and (min-height: 600px));
 @custom-variant ml (@media (orientation: landscape) and (max-height: 500px));
+@custom-variant mln (@media (orientation: landscape) and (max-height: 500px) and (max-width: 700px));
 
 :root {
   --background: #ffffff;
@@ -33,4 +38,3 @@ body {
   background: var(--background);
   color: var(--foreground);
 }
-
