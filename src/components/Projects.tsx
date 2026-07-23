@@ -15,18 +15,18 @@ export default function Projects() {
       <div className="grid grid-cols-1 gap-8 sm:gap-10 md:gap-8 lg:gap-12 tp:gap-8 sl:grid-cols-2 sl:gap-8 ml:gap-6 md:grid-cols-[3fr_2fr]">
         
         <div className="flex flex-col">        
-          <p className="font-mono text-[#FFA1A3] text-[12px]">
+          <p className="font-mono text-[#C2185B] dark:text-[#FFA1A3] text-[12px]">
             MY RECENT WORKS AND STACKS
           </p>
 
           <div className="contents sm:flex sm:items-end sm:justify-between sm:gap-6">
-            <h1 className="mt-6 font-inter font-medium text-white text-2xl sm:text-3xl md:text-3xl lg:text-4xl">
+            <h1 className="mt-6 font-inter font-medium text-foreground text-2xl sm:text-3xl md:text-3xl lg:text-4xl">
               Engineering in {" "}
-              <span className="bg-gradient-to-r from-[#FFF1D5] to-[#FB003F] bg-clip-text text-transparent">practice</span>
+              <span className="bg-gradient-to-r from-[#E8A93F] to-[#C2003F] dark:from-[#FFF1D5] dark:to-[#FB003F] bg-clip-text text-transparent">practice</span>
             </h1>
 
             <Link href="/projects"
-              className="order-last self-center mt-6 sm:order-none sm:mt-2 font-mono text-[12px] sm:text-sm text-neutral-600 hover:text-[#FFD8D9] flex items-end sm:gap-1">
+              className="order-last self-center mt-6 sm:order-none sm:mt-2 font-mono text-[12px] sm:text-sm text-neutral-600 dark:text-neutral-600 hover:text-[#C2185B] dark:hover:text-[#FFD8D9] flex items-end sm:gap-1">
                 SEE ALL <ArrowUpRight size={16} />
             </Link>
           </div>
@@ -45,10 +45,10 @@ export default function Projects() {
       </div>
 
         {/* TOOLS */}
-        <div className="pl-0 md:pl-10 border-t md:border-t-0 md:border-l border-neutral-800 pt-10 md:pt-0 mt-10 md:mt-0 sl:border-t-0 sl:border-l sl:pl-8 sl:pt-0 sl:mt-0 ml:pt-6 ml:mt-6">
-          <h2 className="mt-6 font-inter font-medium text-white text-2xl sm:text-3xl md:text-3xl lg:text-4xl">
+        <div className="pl-0 md:pl-10 border-t md:border-t-0 md:border-l border-black/10 dark:border-neutral-800 pt-10 md:pt-0 mt-10 md:mt-0 sl:border-t-0 sl:border-l sl:pl-8 sl:pt-0 sl:mt-0 ml:pt-6 ml:mt-6">
+          <h2 className="mt-6 font-inter font-medium text-foreground text-2xl sm:text-3xl md:text-3xl lg:text-4xl">
             Tools I've {" "}
-            <span className="bg-gradient-to-r from-[#FFF1D5] to-[#FB003F] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#E8A93F] to-[#C2003F] dark:from-[#FFF1D5] dark:to-[#FB003F] bg-clip-text text-transparent">
               learned {" "}</span> so far
           </h2>
 

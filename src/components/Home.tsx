@@ -46,7 +46,7 @@ export default function Home() {
                     <div className="relative mt-6 flex w-full flex-col items-center gap-3 sm:flex-row sm:justify-center md:mt-12 md:justify-start md:gap-6 tp:mt-10 tp:flex-row tp:justify-center tp:gap-5 sl:mt-8 sl:mb-10 sl:gap-4 ml:mt-8 ml:mb-10 ml:flex-row ml:justify-start ml:gap-3 mln:gap-2">
                         <a
                             href="#projects"
-                            className="flex w-full max-w-xs items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#FB0945] via-[#FF5C8D] to-[#FFE3CD] px-8 py-4 font-inter font-semibold text-black transition hover:scale-[1.02] sm:w-auto tp:w-auto tp:max-w-none sl:w-auto sl:max-w-none sl:whitespace-nowrap sl:px-5 sl:py-3 sl:text-sm ml:px-5 ml:py-2.5 ml:text-sm mln:whitespace-nowrap mln:px-3 mln:py-2 mln:text-xs"
+                            className="flex w-full max-w-xs items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#FB0945] via-[#FF5C8D] to-[#FFE3CD] px-8 py-4 font-inter font-semibold text-white dark:text-black transition hover:scale-[1.02] sm:w-auto tp:w-auto tp:max-w-none sl:w-auto sl:max-w-none sl:whitespace-nowrap sl:px-5 sl:py-3 sl:text-sm ml:px-5 ml:py-2.5 ml:text-sm mln:whitespace-nowrap mln:px-3 mln:py-2 mln:text-xs"
                         >
                             View My Work
                             <span>→</span>
@@ -70,11 +70,11 @@ export default function Home() {
                     ALLEAH BAYAS | BSCPE | SYSTEM DEVELOPMENT
                 </p>
 
-                <div className="pointer-events-none absolute -left-52 top-[30%] hidden h-[420px] w-[420px] -translate-y-1/2 rounded-full bg-[#FB5A74]/15 dark:bg-[#FB5A74]/30 blur-[140px] md:block tp:block tp:-left-24 tp:top-[15%] tp:h-[320px] tp:w-[320px] sl:block sl:-left-24 sl:top-[15%] sl:h-[320px] sl:w-[320px]" />
+                <div className="pointer-events-none absolute -left-52 top-[30%] hidden h-[420px] w-[420px] -translate-y-1/2 rounded-full bg-[#FFA6C1]/300 dark:bg-[#FB5A74]/30 blur-[140px] md:block tp:block tp:-left-24 tp:top-[15%] tp:h-[320px] tp:w-[320px] sl:block sl:-left-24 sl:top-[15%] sl:h-[320px] sl:w-[320px]" />
             </section>
 
             {/* Desktop-only bottom-right glow */}
-            <div className="pointer-events-none absolute right-0 bottom-[-200px] hidden h-[450px] w-[450px] translate-x-[70px] rounded-full bg-[#FFA6C1]/20 dark:bg-[#FFA6C1]/35 blur-[160px] md:block" />
+            <div className="pointer-events-none absolute right-0 bottom-[-200px] hidden h-[450px] w-[450px] translate-x-[70px] rounded-full bg-[#FB5A74]/70 dark:bg-[#FFA6C1]/35 blur-[160px] md:block" />
         </div>
     );
 }

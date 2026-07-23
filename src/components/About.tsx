@@ -42,19 +42,19 @@ export default function About() {
       id="about" 
       className="scroll-mt-4 sm:scroll-mt-24 mx-auto max-w-7xl px-4 pt-8 pb-12 sm:px-6 sm:py-16 tp:px-8 tp:py-14 sl:px-10 sl:py-10 sl:min-h-0 ml:px-6 ml:py-6 ml:min-h-0 lg:grid lg:min-h-[calc(100vh-90px)] lg:place-items-center lg:py-0"
     >
-      <div className="w-full rounded-[1.5rem] border border-black/10 dark:border-white/10 bg-white dark:bg-[#141414] p-6 sm:p-8 md:p-10 tp:p-10 sl:p-8 ml:p-5 lg:rounded-[2rem] lg:p-14">
+      <div className="w-full rounded-[1.5rem] border border-black/10 dark:border-white/10 bg-[#ffe4eb] dark:bg-[#141414] p-6 sm:p-8 md:p-10 tp:p-10 sl:p-8 ml:p-5 lg:rounded-[2rem] lg:p-14">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-[2fr_3fr] md:gap-12 tp:gap-8 sl:grid-cols-[2fr_3fr] sl:gap-10 ml:gap-6">
           
           {/*LEFT COLUMN*/}
           <div>
             <h2 className="font-inter text-4xl font-medium text-foreground">
                 More{" "}
-                <span className="bg-gradient-to-r from-[#FFF1D5] to-[#FB003F] bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#E8A93F] to-[#C2003F] dark:from-[#FFF1D5] dark:to-[#FB003F] bg-clip-text text-transparent">
                     about
                 </span>{" "}
                 me
             </h2>
-            <div className="mt-3 h-[2px] w-15 bg-gradient-to-r from-[#FFF1D5] to-[#FB003F]" />
+            <div className="mt-3 h-[2px] w-15 bg-gradient-to-r from-[#E8A93F] to-[#C2003F] dark:from-[#FFF1D5] dark:to-[#FB003F]" />
             <p className="mt-6 text-[15px] leading-relaxed text-neutral-600 dark:text-[#9F9F9F]">
                 I am a{" "}
                 <span className="text-[#C2185B] dark:text-[#FFA1A3]">Computer Engineer</span> from{" "}
@@ -89,10 +89,10 @@ export default function About() {
 
             <h3 className="mt-2 text-3xl font-inter font-medium text-foreground">
               creating with{" "} 
-              <span className="font-serif font-semibold italic bg-gradient-to-r from-[#FFF1D5] to-[#FB003F] bg-clip-text text-transparent">code</span>, 
+              <span className="font-serif font-semibold italic bg-gradient-to-r from-[#E8A93F] to-[#C2003F] dark:from-[#FFF1D5] dark:to-[#FB003F] bg-clip-text text-transparent">code</span>, 
               <br />
               designing with{" "} 
-              <span className="font-serif font-semibold italic bg-gradient-to-r from-[#FFF1D5] to-[#FB003F] bg-clip-text text-transparent">purpose</span>
+              <span className="font-serif font-semibold italic bg-gradient-to-r from-[#E8A93F] to-[#C2003F] dark:from-[#FFF1D5] dark:to-[#FB003F] bg-clip-text text-transparent">purpose</span>
             </h3>
 
             <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 tp:gap-4 sl:gap-4 ml:mt-5 ml:gap-3">

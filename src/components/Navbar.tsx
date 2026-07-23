@@ -84,9 +84,9 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className="sticky top-0 z-50 hidden md:flex sl:flex ml:flex items-center px-6 md:px-6 lg:px-8 xl:px-16 2xl:px-30 sl:px-8 ml:px-6 py-3 md:py-4 lg:py-5 sl:py-5 ml:py-4 font-mono font-medium bg-white/70 backdrop-blur-md dark:bg-[#0F0F0F] dark:backdrop-blur-none text-[13px]">
+            <nav className="sticky top-0 z-50 hidden md:flex sl:flex ml:flex items-center px-6 md:px-6 lg:px-8 xl:px-16 2xl:px-30 sl:px-8 ml:px-6 py-3 md:py-4 lg:py-5 sl:py-5 ml:py-4 font-mono font-medium bg-[#f8345e]/50 backdrop-blur-md dark:bg-[#0F0F0F] dark:backdrop-blur-none text-[13px]">
                 <div className="flex-1 flex-shrink-0">
-                    <p className="whitespace-nowrap text-foreground text-[11px] md:text-[11px] lg:text-[13px] sl:text-[12px] ml:text-[10px]">A. BAYAS</p>
+                    <p className="whitespace-nowrap text-white dark:text-foreground text-[11px] md:text-[11px] lg:text-[13px] sl:text-[12px] ml:text-[10px]">A. BAYAS</p>
                 </div>
 
                 {/* Desktop nav links */}
@@ -110,8 +110,8 @@ export default function Navbar() {
                                 onClick={() => setActiveSection(link.id)}
                                 className={`relative inline-block pb-0 sl:pb-1 ml:pb-0.5 text-[10px] md:text-[10px] lg:text-[11px] xl:text-[13px] sl:text-[12px] ml:text-[9px] transition-colors duration-300 ease-in-out ${
                                     activeSection === link.id
-                                        ? "text-[#B8860B] dark:text-[#FFF9D2]"
-                                        : "text-foreground"
+                                        ? "text-[#FFF9D2] dark:text-[#FFF9D2]"
+                                        : "text-white dark:text-foreground"
                                 }`}
                             >
                                 {link.label}
@@ -122,30 +122,32 @@ export default function Navbar() {
 
                 {/* Desktop right actions */}
                 <div className="hidden md:flex sl:flex ml:flex flex-1 flex-shrink-0 justify-end items-center gap-2 md:gap-2 xl:gap-4 sl:gap-1.5 ml:gap-2 font-inter font-medium whitespace-nowrap">
-                    <a
-                        href="/alleahbayas-cv.pdf"
-                        download
-                        className="border-2 xl:border-3 rounded-full border-[#B8703E] dark:border-[#FFE3CD] text-foreground px-3 xl:px-5 py-1.5 xl:py-2 text-[10px] md:text-[10px] lg:text-[11px] xl:text-[13px] sl:px-2.5 sl:py-1 sl:text-[12px] ml:px-3 ml:py-1.5 ml:text-[9px] transition-all duration-300 hover:bg-[#FFE3CD] hover:text-black"
-                    >
-                        CV
-                    </a>
+                    <div className="rounded-full bg-gradient-to-r from-[#B8860B] via-[#FFC168] to-[#FFE9B8] dark:bg-none dark:bg-[#FFE3CD] p-[2px] xl:p-[3px]">
+                        <a
+                            href="/alleahbayas-cv.pdf"
+                            download
+                            className="block rounded-full bg-background dark:bg-[#0A0A0A] text-foreground px-3 xl:px-5 py-1.5 xl:py-2 text-[10px] md:text-[10px] lg:text-[11px] xl:text-[13px] sl:px-2.5 sl:py-1 sl:text-[12px] ml:px-3 ml:py-1.5 ml:text-[9px] transition-colors duration-300 hover:bg-[#FFE9B8] hover:text-black"
+                        >
+                            CV
+                        </a>
+                    </div>
 
                     <div className="rounded-full bg-gradient-to-r from-[#FFE3CD] via-[#FF5C8D] to-[#FB0945] p-[2px] xl:p-[3px]">
                         <a
                             href="#contact"
-                            className="block rounded-full bg-background text-foreground dark:bg-[#0A0A0A] px-3 xl:px-5 py-1.5 xl:py-2 text-[10px] md:text-[10px] lg:text-[11px] xl:text-[13px] sl:px-2.5 sl:py-1 sl:text-[12px] ml:px-3 ml:py-1.5 ml:text-[9px] transition-all duration-300 hover:bg-transparent hover:text-black"
+                            className="block rounded-full bg-background dark:bg-[#0A0A0A] text-foreground px-3 xl:px-5 py-1.5 xl:py-2 text-[10px] md:text-[10px] lg:text-[11px] xl:text-[13px] sl:px-2.5 sl:py-1 sl:text-[12px] ml:px-3 ml:py-1.5 ml:text-[9px] transition-colors duration-300 hover:bg-[#FFE3CD] hover:text-black"
                         >
                             Let's Connect
                         </a>
                     </div>
                 </div>
             </nav>
-            
+
             <button
                 type="button"
                 onClick={() => setMobileOpen(true)}
                 aria-label="Open menu"
-                className={`fixed top-6 right-6 z-50 flex md:hidden sl:hidden ml:hidden flex-col justify-center items-center gap-1.5 w-12 h-12 rounded-full bg-white/70 backdrop-blur-md dark:bg-[#0F0F0F] dark:backdrop-blur-none border border-[#B8703E]/30 dark:border-[#FFE3CD]/30 shadow-lg transition-opacity duration-300 ${
+                className={`fixed top-6 right-6 z-50 flex md:hidden sl:hidden ml:hidden flex-col justify-center items-center gap-1.5 w-12 h-12 rounded-full bg-[#FFD8D9]/70 backdrop-blur-md dark:bg-[#0F0F0F] dark:backdrop-blur-none border border-[#B8703E]/30 dark:border-[#FFE3CD]/30 shadow-lg transition-opacity duration-300 ${
                     mobileOpen ? "opacity-0 pointer-events-none" : "opacity-100"
                 }`}
             >
@@ -164,12 +166,12 @@ export default function Navbar() {
 
             {/* Mobile sidebar */}
             <aside
-                className={`fixed top-0 right-0 z-50 h-full w-[75%] max-w-[320px] bg-white/80 backdrop-blur-md dark:bg-[#0F0F0F] dark:backdrop-blur-none font-mono text-[13px] shadow-xl transition-transform duration-300 ease-in-out md:hidden sl:hidden ml:hidden ${
+                className={`fixed top-0 right-0 z-50 h-full w-[75%] max-w-[320px] bg-[#FFD8D9]/80 backdrop-blur-md dark:bg-[#0F0F0F] dark:backdrop-blur-none font-mono text-[13px] shadow-xl transition-transform duration-300 ease-in-out md:hidden sl:hidden ml:hidden ${
                     mobileOpen ? "translate-x-0" : "translate-x-full"
                 }`}
             >
                 <div className="flex items-center justify-between px-6 py-5">
-                    <p className="font-medium text-foreground">A. BAYAS</p>
+                    <p className="font-medium text-white dark:text-foreground">A. BAYAS</p>
                     <button
                         type="button"
                         onClick={() => setMobileOpen(false)}
@@ -189,8 +191,8 @@ export default function Navbar() {
                                 onClick={() => handleMobileLinkClick(link.id)}
                                 className={`transition-colors duration-300 ease-in-out ${
                                     activeSection === link.id
-                                        ? "text-[#B8860B] dark:text-[#FFF9D2]"
-                                        : "text-foreground"
+                                        ? "text-[#FFF9D2] dark:text-[#FFF9D2]"
+                                        : "text-white dark:text-foreground"
                                 }`}
                             >
                                 {link.label}
@@ -200,19 +202,21 @@ export default function Navbar() {
                 </ul>
 
                 <div className="flex flex-col gap-4 px-6 py-6 font-inter font-medium">
-                    <a
-                        href="/alleahbayas-cv.pdf"
-                        download
-                        className="text-center border-3 rounded-full border-[#B8703E] dark:border-[#FFE3CD] text-foreground px-5 py-2 transition-all duration-300 hover:bg-[#FFE3CD] hover:text-black"
-                    >
-                        CV
-                    </a>
+                    <div className="rounded-full bg-gradient-to-r from-[#B8860B] via-[#FFC168] to-[#FFE9B8] dark:bg-none dark:bg-[#FFE3CD] p-[3px]">
+                        <a
+                            href="/alleahbayas-cv.pdf"
+                            download
+                            className="block text-center rounded-full bg-background dark:bg-[#0A0A0A] text-foreground px-5 py-2 transition-colors duration-300 hover:bg-[#FFE9B8] hover:text-black"
+                        >
+                            CV
+                        </a>
+                    </div>
 
                     <div className="rounded-full bg-gradient-to-r from-[#FFE3CD] via-[#FF5C8D] to-[#FB0945] p-[3px]">
                         <a
                             href="#contact"
                             onClick={() => handleMobileLinkClick("contact")}
-                            className="block text-center rounded-full bg-background text-foreground dark:bg-[#0A0A0A] px-5 py-2 transition-all duration-300 hover:bg-transparent hover:text-black"
+                            className="block text-center rounded-full bg-background dark:bg-[#0A0A0A] text-foreground px-5 py-2 transition-colors duration-300 hover:bg-[#FFE3CD] hover:text-black"
                         >
                             Let's Connect
                         </a>
