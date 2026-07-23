@@ -77,14 +77,24 @@ export default function Contact() {
               <FaLinkedin size={16} /> Linkedin
             </a>
 
-            <a href="#" className="flex w-full max-w-[450px] mt-4 items-center gap-3 rounded-2xl bg-gradient-to-r from-[#A07172] via-[#FF9F9E] to-[#FF5C6E] px-3 py-2 text-white transition hover:opacity-90">
+            <a
+              href="/Alleah_Bayas_CV.pdf"
+              download
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex w-full max-w-[450px] mt-4 items-center gap-3 rounded-2xl bg-gradient-to-r from-[#A07172] via-[#FF9F9E] to-[#FF5C6E] px-3 py-2 text-white transition hover:opacity-90"
+            >
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-black/10">
                 <FileText size={20} />
               </div>
+
               <div className="flex-1 min-w-0 text-left">
                 <p className="text-[16px] font-semibold">Download PDF</p>
-                <p className="font-mono text-[11px] text-[#E2E2E2] truncate">Alleah_Bayas_CV.PDF · 33 KB</p>
+                <p className="font-mono text-[11px] text-[#E2E2E2] truncate">
+                  Alleah_Bayas_CV.pdf
+                </p>
               </div>
+
               <Download size={20} className="shrink-0" />
             </a>
           </div>

@@ -204,7 +204,7 @@ export default function Navbar() {
                 <div className="flex flex-col gap-4 px-6 py-6 font-inter font-medium">
                     <div className="rounded-full bg-gradient-to-r from-[#B8860B] via-[#FFC168] to-[#FFE9B8] dark:bg-none dark:bg-[#FFE3CD] p-[3px]">
                         <a
-                            href="/alleahbayas-cv.pdf"
+                            href="/AlleahBayas_CV.pdf"
                             download
                             className="block text-center rounded-full bg-background dark:bg-[#0A0A0A] text-foreground px-5 py-2 transition-colors duration-300 hover:bg-[#FFE9B8] hover:text-black"
                         >
