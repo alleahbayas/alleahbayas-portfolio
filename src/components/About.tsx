@@ -42,12 +42,12 @@ export default function About() {
       id="about" 
       className="scroll-mt-4 sm:scroll-mt-24 mx-auto max-w-7xl px-4 pt-8 pb-12 sm:px-6 sm:py-16 tp:px-8 tp:py-14 sl:px-10 sl:py-10 sl:min-h-0 ml:px-6 ml:py-6 ml:min-h-0 lg:grid lg:min-h-[calc(100vh-90px)] lg:place-items-center lg:py-0"
     >
-      <div className="w-full rounded-[1.5rem] border border-white/10 bg-[#141414] p-6 sm:p-8 md:p-10 tp:p-10 sl:p-8 ml:p-5 lg:rounded-[2rem] lg:p-14">
+      <div className="w-full rounded-[1.5rem] border border-black/10 dark:border-white/10 bg-white dark:bg-[#141414] p-6 sm:p-8 md:p-10 tp:p-10 sl:p-8 ml:p-5 lg:rounded-[2rem] lg:p-14">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-[2fr_3fr] md:gap-12 tp:gap-8 sl:grid-cols-[2fr_3fr] sl:gap-10 ml:gap-6">
           
           {/*LEFT COLUMN*/}
           <div>
-            <h2 className="font-inter text-4xl font-medium text-white">
+            <h2 className="font-inter text-4xl font-medium text-foreground">
                 More{" "}
                 <span className="bg-gradient-to-r from-[#FFF1D5] to-[#FB003F] bg-clip-text text-transparent">
                     about
@@ -55,18 +55,18 @@ export default function About() {
                 me
             </h2>
             <div className="mt-3 h-[2px] w-15 bg-gradient-to-r from-[#FFF1D5] to-[#FB003F]" />
-            <p className="mt-6 text-[15px] leading-relaxed text-[#9F9F9F]">
+            <p className="mt-6 text-[15px] leading-relaxed text-neutral-600 dark:text-[#9F9F9F]">
                 I am a{" "}
-                <span className="text-[#FFA1A3]">Computer Engineer</span> from{" "}
-                <span className="text-[#FFA1A3]">Polytechnic University of the Philippines</span>{" "}
+                <span className="text-[#C2185B] dark:text-[#FFA1A3]">Computer Engineer</span> from{" "}
+                <span className="text-[#C2185B] dark:text-[#FFA1A3]">Polytechnic University of the Philippines</span>{" "}
                 with a passion for designing and developing practical digital
                 solutions. I specialize in{" "}
-                <span className="text-[#FFA1A3]">System Development</span>, where I
+                <span className="text-[#C2185B] dark:text-[#FFA1A3]">System Development</span>, where I
                 transform ideas into functional, user-friendly applications that
                 solve real-world problems.
             </p>
 
-            <p className="mt-4 text-[15px] leading-relaxed text-[#9F9F9F]">
+            <p className="mt-4 text-[15px] leading-relaxed text-neutral-600 dark:text-[#9F9F9F]">
                 I enjoy building systems that combine intuitive interfaces with
                 reliable back-end functionality. Whether it's creating dashboards,
                 developing web applications, or designing database-driven
@@ -74,7 +74,7 @@ export default function About() {
                 my craft.
             </p>
 
-            <p className="mt-4 text-[15px] leading-relaxed text-[#9F9F9F]">
+            <p className="mt-4 text-[15px] leading-relaxed text-neutral-600 dark:text-[#9F9F9F]">
                 My goal is to become a software engineer who develops innovative,
                 scalable, and impactful systems that make everyday processes
                 simpler and more efficient.
@@ -82,12 +82,12 @@ export default function About() {
           </div>
 
           {/*RIGHT COLUMN*/}
-          <div className="border-t border-white/15 pt-8 md:border-t-0 md:border-l md:pl-12 md:pt-0 sl:border-t-0 sl:border-l sl:pl-10 sl:pt-0 ml:pt-6">      
-            <p className="font-mono text-[12px] text-[#FFA1A3]">
+          <div className="border-t border-black/10 dark:border-white/15 pt-8 md:border-t-0 md:border-l md:pl-12 md:pt-0 sl:border-t-0 sl:border-l sl:pl-10 sl:pt-0 ml:pt-6">      
+            <p className="font-mono text-[12px] text-[#C2185B] dark:text-[#FFA1A3]">
               WHAT I DO
             </p>
 
-            <h3 className="mt-2 text-3xl font-inter font-medium text-white">
+            <h3 className="mt-2 text-3xl font-inter font-medium text-foreground">
               creating with{" "} 
               <span className="font-serif font-semibold italic bg-gradient-to-r from-[#FFF1D5] to-[#FB003F] bg-clip-text text-transparent">code</span>, 
               <br />
@@ -101,17 +101,17 @@ export default function About() {
                 return (
                   <div
                     key={item.title}
-                    className="rounded-2xl border border-white/10 bg-[#0F0F0F] p-5 tp:p-4 sl:p-4 ml:p-4"
+                    className="rounded-2xl border border-black/10 dark:border-white/10 bg-neutral-50 dark:bg-[#0F0F0F] p-5 tp:p-4 sl:p-4 ml:p-4"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#FB5A74]/15 text-[#FF5C8D]">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#FB5A74]/10 dark:bg-[#FB5A74]/15 text-[#FF5C8D]">
                         <Icon size={18} strokeWidth={2} />
                       </div>
-                      <h4 className="font-inter font-semibold text-white">
+                      <h4 className="font-inter font-semibold text-foreground">
                         {item.title}
                       </h4>
                     </div>
-                    <p className="mt-2 text-[13px] leading-relaxed text-[#999999]">
+                    <p className="mt-2 text-[13px] leading-relaxed text-neutral-500 dark:text-[#999999]">
                         {item.desc}
                       </p>
                   </div>
