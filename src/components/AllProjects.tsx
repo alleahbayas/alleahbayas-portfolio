@@ -12,9 +12,9 @@ export default function AllProjects() {
                 <ArrowLeft size ={16} /> BACK TO HOME 
             </Link>
 
-            <h1 className="mt-6 font-inter font-medium text-white text-4xl">
+            <h1 className="mt-6 font-inter font-medium text-black dark:text-white text-4xl">
                 Everything I've {" "}
-                <span className="bg-gradient-to-r from-[#FFF1D5] to-[#FB003F] bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#FF9A56] via-[#FF5C8D] to-[#FB0945] dark:from-[#FFF1D5] to-[#FB003F] bg-clip-text text-transparent">
                     worked {" "}</span>on
             </h1>
 
