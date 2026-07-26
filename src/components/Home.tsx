@@ -54,8 +54,10 @@ export default function Home() {
 
                         <div className="w-full max-w-xs rounded-full bg-gradient-to-r from-[#FFE3CD] via-[#FF5C8D] to-[#FB0945] p-[3px] sm:w-auto md:w-auto tp:w-auto tp:max-w-none sl:w-auto sl:max-w-none ml:max-w-none">
                             <a
-                                href="/alleahbayas-cv.pdf"
+                                href="/AlleahBayas_CV.pdf"
                                 download
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="group relative flex items-center justify-center gap-2 overflow-hidden rounded-full bg-background text-foreground px-8 py-4 font-inter transition-colors duration-300 hover:text-black sl:whitespace-nowrap sl:px-5 sl:py-3 sl:text-sm ml:px-5 ml:py-2.5 ml:text-sm mln:whitespace-nowrap mln:px-3 mln:py-2 mln:text-xs"
                             >
                                 <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-[#FFE3CD] via-[#FF5C8D] to-[#FB0945] transition-transform duration-500 ease-out group-hover:translate-x-0" />
