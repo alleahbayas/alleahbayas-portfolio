@@ -1,6 +1,24 @@
 "use client";
 
+import { useId, useSyncExternalStore } from "react";
 import { Experience } from "@/lib/WorkExperience";
+
+let activeCardId: string | null = null;
+const listeners = new Set<() => void>();
+
+function setActiveCardId(id: string | null) {
+  activeCardId = id;
+  listeners.forEach((listener) => listener());
+}
+
+function subscribe(listener: () => void) {
+  listeners.add(listener);
+  return () => listeners.delete(listener);
+}
+
+function getActiveCardId() {
+  return activeCardId;
+}
 
 export default function ExperienceCard({
   number,
@@ -10,6 +28,19 @@ export default function ExperienceCard({
   date,
   bullets,
 }: Experience) {
+
+  const cardId = useId();
+  const currentActiveId = useSyncExternalStore(
+    subscribe,
+    getActiveCardId,
+    () => null
+  );
+  const isCardActive = currentActiveId === cardId;
+
+  const toggleCard = () => {
+    setActiveCardId(isCardActive ? null : cardId);
+  };
+
   return (
     <div className="relative flex items-center">
       <div className="absolute left-[52px] -translate-x-1/2 flex items-center justify-center">
@@ -22,10 +53,23 @@ export default function ExperienceCard({
       </div>
 
       {/* CARD */}
-      <div className="group/exp relative ml-24 flex-1 min-w-0 rounded-2xl border border-[#E8B4BC] dark:border-[#583636] bg-white dark:bg-[#160E10] px-4 py-4 sm:px-6 sm:py-5 overflow-hidden transition-transform duration-300 ease-out hover:scale-[1.015] active:scale-[1.015]">
-        {/* Continuous traveling glow line with a fading comet tail — only on hover/press */}
+      <div
+        onClick={toggleCard}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            toggleCard();
+          }
+        }}
+        className="group/exp relative ml-24 flex-1 min-w-0 rounded-2xl border border-[#E8B4BC] dark:border-[#583636] bg-white dark:bg-[#160E10] px-4 py-4 sm:px-6 sm:py-5 overflow-hidden cursor-pointer transition-transform duration-300 ease-out hover:scale-[1.015] active:scale-[1.015]"
+      >
+        {/* Continuous traveling glow line with a fading comet tail — on hover/press, or stays on after a tap until tapped again (or another card is tapped) */}
         <svg
-          className="absolute inset-0 w-full h-full pointer-events-none opacity-0 transition-opacity duration-300 group-hover/exp:opacity-100 group-active/exp:opacity-100"
+          className={`absolute inset-0 w-full h-full pointer-events-none opacity-0 transition-opacity duration-300 group-hover/exp:opacity-100 group-active/exp:opacity-100 ${
+            isCardActive ? "opacity-100" : ""
+          }`}
           preserveAspectRatio="none"
         >
           {/* Tail (dimmest, trails behind) */}

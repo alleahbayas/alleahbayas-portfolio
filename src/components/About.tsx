@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { Code, Palette, Layers, Monitor, LucideIcon } from "lucide-react";
 
 const iconMap: Record<string, LucideIcon> = {
@@ -37,6 +40,16 @@ const features: Feature[] = [
 ];
 
 export default function About() {
+  // Tracks which single card has been tapped/clicked so its glow stays on
+  // even after the press/hover ends. Tapping a different card moves the glow
+  // to that one instead (only one card glows at a time). Tapping the same
+  // card again turns it off.
+  const [activeCard, setActiveCard] = useState<string | null>(null);
+
+  const toggleCard = (title: string) => {
+    setActiveCard((prev) => (prev === title ? null : title));
+  };
+
   return (
     <section 
       id="about" 
@@ -98,10 +111,20 @@ export default function About() {
             <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 tp:gap-4 sl:gap-4 ml:mt-5 ml:gap-3">
               {features.map((item) => {
                 const Icon = iconMap[item.icon];
+                const isActive = activeCard === item.title;
                 return (
                   <div
                     key={item.title}
-                    className="group/feat relative overflow-hidden rounded-2xl border border-black/10 dark:border-white/10 bg-neutral-50 dark:bg-[#0F0F0F] p-5 tp:p-4 sl:p-4 ml:p-4 transition-transform duration-300 ease-out hover:scale-[1.03] active:scale-[1.03]"
+                    onClick={() => toggleCard(item.title)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        toggleCard(item.title);
+                      }
+                    }}
+                    className="group/feat relative overflow-hidden rounded-2xl border border-black/10 dark:border-white/10 bg-neutral-50 dark:bg-[#0F0F0F] p-5 tp:p-4 sl:p-4 ml:p-4 cursor-pointer select-none transition-transform duration-300 ease-out hover:scale-[1.03] active:scale-[1.03]"
                   >
                     <div className="flex items-center gap-3">
                       <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#FB5A74]/10 dark:bg-[#FB5A74]/15 text-[#FF5C8D]">
@@ -115,9 +138,11 @@ export default function About() {
                         {item.desc}
                       </p>
 
-                    {/* Bottom glow line — slides in on hover/press */}
+                    {/* Bottom glow line — shows on hover, or stays on after a tap/click until tapped again */}
                     <span
-                      className="pointer-events-none absolute bottom-0 left-1/2 h-px w-0 -translate-x-1/2 opacity-0 transition-all duration-500 ease-out group-hover/feat:w-4/5 group-hover/feat:opacity-100 group-active/feat:w-4/5 group-active/feat:opacity-100"
+                      className={`pointer-events-none absolute bottom-0 left-1/2 h-px -translate-x-1/2 transition-all duration-500 ease-out group-hover/feat:w-4/5 group-hover/feat:opacity-100 ${
+                        isActive ? "w-4/5 opacity-100" : "w-0 opacity-0"
+                      }`}
                       style={{
                         background: "linear-gradient(90deg, transparent, #FF5C8D, transparent)",
                         boxShadow: "0 0 12px 1px #FF5C8D",
