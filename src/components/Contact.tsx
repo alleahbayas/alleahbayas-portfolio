@@ -2,23 +2,59 @@
 
 import { useState } from "react";
 import type { ChangeEvent } from "react";
-import { Mail, MapPin, FileText, Download, Send } from "lucide-react";
+import emailjs from "@emailjs/browser";
+import { Mail, MapPin, FileText, Download, Send, Loader2, CheckCircle2, XCircle } from "lucide-react";
 import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
+
+// ⬇️ Replace these with the values from your EmailJS dashboard (Account > API Keys, Email Services, Email Templates)
+const EMAILJS_SERVICE_ID = "service_cmz1vhj";
+const EMAILJS_TEMPLATE_ID = "template_32uqtwl";
+const EMAILJS_PUBLIC_KEY = "sGAdiYqnEtJeNkMTa";
+
+type Status = "idle" | "sending" | "success" | "error";
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: ""});
+  const [status, setStatus] = useState<Status>("idle");
 
   const handleChange = (field: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm((prev) => ({ ...prev, [field]: e.target.value }));
 
-  const handleSubmit = () => {
-    console.log(form);
+  const handleSubmit = async () => {
+    if (!form.name || !form.email || !form.message) {
+      setStatus("error");
+      return;
+    }
+
+    setStatus("sending");
+
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: form.name,
+          from_email: form.email,
+          message: form.message,
+        },
+        { publicKey: EMAILJS_PUBLIC_KEY }
+      );
+
+      setStatus("success");
+      setForm({ name: "", email: "", message: "" });
+
+      // Reset the success state after a few seconds
+      setTimeout(() => setStatus("idle"), 4000);
+    } catch (error) {
+      console.error("EmailJS error:", error);
+      setStatus("error");
+    }
   };
 
   return (
     <section 
       id="contact" 
-      className="px-4 py-10 sm:px-5 sm:py-12 md:px-8 md:py-14 lg:py-16 tp:px-6 tp:py-12 sl:px-8 sl:py-10 ml:px-6 ml:py-6 max-w-7xl mx-auto scroll-mt-14">
+      className="px-4 py-10 sm:px-5 sm:py-12 md:px-8 md:py-14 lg:py-16 tp:px-6 tp:py-12 sl:px-8 sl:py-10 ml:px-6 ml:py-6 max-w-7xl mx-auto scroll-mt-[var(--nav-h)]">
 
       <p className="font-mono text-xs text-[#C2185B] dark:text-[#FFA1A3]">
         GET IN TOUCH</p>
@@ -65,26 +101,51 @@ export default function Contact() {
           </div>
         
           <div className="mb-4 flex flex-wrap justify-center gap-3">
-            <a href="#" className="flex items-center gap-2 rounded-lg border border-black/10 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 px-5 sm:px-7.5 py-2.5 text-sm text-foreground transition hover:bg-neutral-200 dark:hover:bg-neutral-800">
-              <FaGithub size={16} /> GitHub
+            {/* GITHUB */}
+            <a
+              href="https://github.com/YOUR_USERNAME"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative flex items-center gap-2 overflow-hidden rounded-lg border border-black/10 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 px-5 sm:px-7.5 py-2.5 text-sm text-foreground transition-colors duration-300 hover:text-white hover:border-transparent"
+            >
+              <span className="absolute inset-0 -translate-x-full bg-[#FF5C6E] transition-transform duration-300 ease-out group-hover:translate-x-0" />
+              <FaGithub size={16} className="relative z-10 transition-transform duration-300 group-hover:scale-110" />
+              <span className="relative z-10">GitHub</span>
             </a>
 
-            <a href="#" className="flex items-center gap-2 rounded-lg border border-black/10 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 px-5 sm:px-7.5 py-2.5 text-sm text-foreground transition hover:bg-neutral-200 dark:hover:bg-neutral-800">
-              <FaInstagram size={16} /> Instagram
+            {/* INSTAGRAM */}
+            <a
+              href="https://instagram.com/YOUR_USERNAME"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative flex items-center gap-2 overflow-hidden rounded-lg border border-black/10 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 px-5 sm:px-7.5 py-2.5 text-sm text-foreground transition-colors duration-300 hover:text-white hover:border-transparent"
+            >
+              <span className="absolute inset-0 -translate-x-full bg-[#FF5C6E] transition-transform duration-300 ease-out group-hover:translate-x-0" />
+              <FaInstagram size={16} className="relative z-10 transition-transform duration-300 group-hover:scale-110" />
+              <span className="relative z-10">Instagram</span>
             </a>
 
-            <a href="#" className="flex items-center gap-2 rounded-lg border border-black/10 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 px-5 sm:px-7.5 py-2.5 text-sm text-foreground transition hover:bg-neutral-200 dark:hover:bg-neutral-800">
-              <FaLinkedin size={16} /> Linkedin
+            {/* LINKEDIN */}
+            <a
+              href="https://linkedin.com/in/YOUR_USERNAME"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative flex items-center gap-2 overflow-hidden rounded-lg border border-black/10 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 px-5 sm:px-7.5 py-2.5 text-sm text-foreground transition-colors duration-300 hover:text-white hover:border-transparent"
+            >
+              <span className="absolute inset-0 -translate-x-full bg-[#FF5C6E] transition-transform duration-300 ease-out group-hover:translate-x-0" />
+              <FaLinkedin size={16} className="relative z-10 transition-transform duration-300 group-hover:scale-110" />
+              <span className="relative z-10">Linkedin</span>
             </a>
 
+            {/* DOWNLOAD CV - color slide via animated gradient position */}
             <a
               href="/AlleahBayas_CV.pdf"
               download
               target="_blank"
               rel="noopener noreferrer"
-              className="flex w-full max-w-[450px] mt-4 items-center gap-3 rounded-2xl bg-gradient-to-r from-[#A07172] via-[#FF9F9E] to-[#FF5C6E] px-3 py-2 text-white transition hover:opacity-90"
+              className="flex w-full max-w-[450px] mt-4 items-center gap-3 rounded-2xl bg-gradient-to-r from-[#A07172] via-[#FF9F9E] to-[#FF5C6E] bg-[length:200%_100%] bg-left px-3 py-2 text-white transition-[background-position,transform] duration-500 ease-out hover:bg-right hover:scale-[1.02]"
             >
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-black/10">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-black/10 transition-transform duration-300 group-hover:rotate-6">
                 <FileText size={20} />
               </div>
 
@@ -95,7 +156,7 @@ export default function Contact() {
                 </p>
               </div>
 
-              <Download size={20} className="shrink-0" />
+              <Download size={20} className="shrink-0 transition-transform duration-300 group-hover:translate-y-0.5" />
             </a>
           </div>
         </div>
@@ -140,13 +201,34 @@ export default function Contact() {
             className="w-full resize-none rounded-xl border border-black/10 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 px-4 py-3 text-sm text-foreground placeholder-neutral-400 dark:placeholder-neutral-600 focus:border-rose-400/60 dark:focus:border-rose-300/60 focus:outline-none mb-6"
           />
  
-          <div className="flex md:justify-center">
+          <div className="flex flex-col items-center gap-3 sm:justify-center md:justify-center tp:justify-center sl:justify-center">
             <button
               onClick={handleSubmit}
-              className="flex items-center gap-2 rounded-full border border-[#FF5C6E] px-6 py-3 text-sm text-foreground dark:text-white transition hover:bg-[#FF5C6E] hover:text-white"
+              disabled={status === "sending"}
+              className="group flex items-center gap-2 rounded-full border border-[#FF5C6E] px-6 py-3 text-sm text-foreground dark:text-white transition-all duration-300 hover:bg-[#FF5C6E] hover:text-white hover:shadow-lg hover:shadow-[#FF5C6E]/30 hover:scale-[1.03] active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
             >
-              Send Message <Send className="text-[#FF5C6E] hover:text-white" size={15} />
+              {status === "sending" ? (
+                <>
+                  Sending <Loader2 className="text-[#FF5C6E] group-hover:text-white animate-spin" size={15} />
+                </>
+              ) : (
+                <>
+                  Send Message <Send className="text-[#FF5C6E] group-hover:text-white transition-transform duration-300 group-hover:translate-x-1" size={15} />
+                </>
+              )}
             </button>
+
+            {status === "success" && (
+              <p className="flex items-center gap-1.5 text-sm text-emerald-600 dark:text-emerald-400">
+                <CheckCircle2 size={15} /> Message sent — thanks for reaching out!
+              </p>
+            )}
+
+            {status === "error" && (
+              <p className="flex items-center gap-1.5 text-sm text-red-500 dark:text-red-400">
+                <XCircle size={15} /> Please fill in all fields and try again.
+              </p>
+            )}
           </div>
         </div>
       </div>

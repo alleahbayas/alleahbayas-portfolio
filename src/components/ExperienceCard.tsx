@@ -1,3 +1,5 @@
+"use client";
+
 import { Experience } from "@/lib/WorkExperience";
 
 export default function ExperienceCard({
@@ -20,10 +22,56 @@ export default function ExperienceCard({
       </div>
 
       {/* CARD */}
-      <div className="ml-24 flex-1 min-w-0 rounded-2xl border-[2px] border border-[#E8B4BC] dark:border-[#583636] bg-white dark:bg-[#160E10] px-4 py-4 sm:px-6 sm:py-5">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
-            
-          {/* HEADER & BULLETS */}
+      <div className="group/exp relative ml-24 flex-1 min-w-0 rounded-2xl border border-[#E8B4BC] dark:border-[#583636] bg-white dark:bg-[#160E10] px-4 py-4 sm:px-6 sm:py-5 overflow-hidden transition-transform duration-300 ease-out hover:scale-[1.015] active:scale-[1.015]">
+        {/* Continuous traveling glow line with a fading comet tail — only on hover/press */}
+        <svg
+          className="absolute inset-0 w-full h-full pointer-events-none opacity-0 transition-opacity duration-300 group-hover/exp:opacity-100 group-active/exp:opacity-100"
+          preserveAspectRatio="none"
+        >
+          {/* Tail (dimmest, trails behind) */}
+          <rect
+            x="1" y="1" width="100%" height="100%" rx="16" ry="16"
+            fill="none" stroke="#FFF9D2" strokeWidth="0.75" strokeLinecap="round"
+            pathLength={100} strokeDasharray="15 85"
+            style={{
+              animation: "border-travel 3s linear infinite",
+              filter: "drop-shadow(0 0 4px #FFF9D2)",
+              opacity: 0.15,
+            }}
+          />
+          {/* Mid */}
+          <rect
+            x="1" y="1" width="100%" height="100%" rx="16" ry="16"
+            fill="none" stroke="#FFF9D2" strokeWidth="0.75" strokeLinecap="round"
+            pathLength={100} strokeDasharray="15 85"
+            style={{
+              animation: "border-travel 3s linear infinite",
+              animationDelay: "-0.1s",
+              filter: "drop-shadow(0 0 4px #FFF9D2)",
+              opacity: 0.45,
+            }}
+          />
+          {/* Head (brightest, leads the trail) */}
+          <rect
+            x="1" y="1" width="100%" height="100%" rx="16" ry="16"
+            fill="none" stroke="#FFF9D2" strokeWidth="0.75" strokeLinecap="round"
+            pathLength={100} strokeDasharray="15 85"
+            style={{
+              animation: "border-travel 3s linear infinite",
+              animationDelay: "-0.2s",
+              filter: "drop-shadow(0 0 6px #FFF9D2) drop-shadow(0 0 12px #FFF9D2)",
+            }}
+          />
+        </svg>
+
+        <style>{`
+          @keyframes border-travel {
+            from { stroke-dashoffset: 0; }
+            to { stroke-dashoffset: -100; }
+          }
+        `}</style>
+
+        <div className="relative flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
           <div className="flex-1 min-w-0">
             <div className="flex gap-3 sm:gap-4">
               <img
@@ -53,7 +101,6 @@ export default function ExperienceCard({
             </ul>
           </div>
 
-          {/* DATE & NUMBER */}
           <div className="flex flex-row items-center justify-between w-full sm:flex-col sm:items-end sm:justify-between sm:self-stretch sm:w-auto shrink-0">
             <span className="flex items-center gap-1.5 font-mono text-[9px] sm:text-[10px] bg-[#f6d3db] text-white dark:bg-[#0F0F0F] dark:text-[#9F9F9F] border border-black/15 dark:border-white/20 rounded-full px-2.5 py-1 sm:px-3 whitespace-nowrap">
               <span className="w-1.5 h-1.5 rounded-full bg-[#FFF9D2] dark:bg-[#FB0945]" />

@@ -28,3 +28,27 @@ export const Icons: Record<string, React.ReactNode> = {
   Vercel: <SiVercel className="text-white" />,
   Vite: <SiVite className="text-purple-400" />,
 };
+
+export const IconColors: Record<string, string> = {
+  React: "#38bdf8",       // sky-400
+  Vue: "#34d399",         // emerald-400
+  JavaScript: "#facc15",  // yellow-400
+  TypeScript: "#3b82f6",  // blue-500
+  HTML: "#f97316",        // orange-500
+  "C++": "#2563eb",       // blue-600
+  CSS: "#60a5fa",         // blue-400
+  SCSS: "#f472b6",        // pink-400
+  Tailwind: "#22d3ee",    // cyan-400
+  "Node.js": "#22c55e",   // green-500
+  "Next.js": "#ffffff",
+  Python: "#fde047",      // yellow-300
+  PHP: "#a5b4fc",         // indigo-300
+  MySQL: "#93c5fd",       // blue-300
+  Firebase: "#fbbf24",    // amber-400
+  PostgreSQL: "#7dd3fc",  // sky-300
+  Laravel: "#f87171",     // red-400
+  Figma: "#f87171",       // red-400
+  Git: "#fb923c",         // orange-400
+  Vercel: "#ffffff",
+  Vite: "#c084fc",        // purple-400
+};

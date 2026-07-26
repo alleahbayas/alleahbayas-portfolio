@@ -5,7 +5,7 @@ export default function Experience() {
   return (
     <section
       id="experiences"
-      className="px-4 py-10 sm:px-5 sm:py-12 md:px-8 md:py-14 lg:py-16 tp:px-6 tp:py-12 sl:px-8 sl:py-10 ml:px-6 ml:py-6 max-w-7xl mx-auto scroll-mt-14"
+      className="px-4 py-10 sm:px-5 sm:py-12 md:px-8 md:py-14 lg:py-16 tp:px-6 tp:py-12 sl:px-8 sl:py-10 ml:px-6 ml:py-6 max-w-7xl mx-auto scroll-mt-[var(--nav-h)]"
     >
       <h1 className="font-inter font-medium text-4xl text-foreground">
         Built through{" "}

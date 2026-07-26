@@ -5,6 +5,7 @@ import About from "@/components/About";
 import Projects from "@/components/Projects";
 import Experience from "@/components/Experience";
 import Contact from "@/components/Contact";
+import Reveal from "@/components/Reveal";
 
 const jetBrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -32,11 +33,27 @@ export default function Main() {
     <div className={`${jetBrainsMono.variable} ${inter.variable} ${serif.variable} ${poppins.variable} min-h-screen font-inter`}>
       <Navbar />
       <main className="overflow-x-clip">
-        <Home />
-        <About />
-        <Projects />
-        <Experience />
-        <Contact />
+        
+        <Reveal direction="up">
+          <Home />
+        </Reveal>
+
+        <Reveal direction="up">
+          <About />
+        </Reveal>
+
+        <Reveal direction="up">
+          <Projects />
+        </Reveal>
+
+        <Reveal direction="up">
+          <Experience />
+        </Reveal>
+
+        <Reveal direction="up">
+          <Contact />
+        </Reveal>
+
         <footer className="px-6 py-8 max-w-4xl mx-auto border-t border-[var(--bg-line)]">
           <p className="text-xs text-[var(--muted)] font-mono">
             Built with Next.js · Deployed on Vercel

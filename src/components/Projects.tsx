@@ -10,7 +10,8 @@ export default function Projects() {
   return (
     <section 
       id="projects" 
-      className="px-4 py-10 sm:px-5 sm:py-12 md:px-8 md:py-14 lg:py-16 tp:px-6 tp:py-12 sl:px-8 sl:py-10 ml:px-6 ml:py-6 max-w-7xl mx-auto scroll-mt-14">
+      className="px-4 py-10 sm:px-5 sm:py-12 md:px-8 md:py-14 lg:py-16 tp:px-6 tp:py-12 sl:px-8 sl:py-10 ml:px-6 ml:py-6 max-w-7xl mx-auto scroll-mt-[var(--nav-h)]"
+      >
 
       <div className="grid grid-cols-1 gap-8 sm:gap-10 md:gap-8 lg:gap-12 tp:gap-8 sl:grid-cols-2 sl:gap-8 ml:gap-6 md:grid-cols-[3fr_2fr]">
         

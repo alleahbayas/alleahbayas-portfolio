@@ -40,7 +40,7 @@ export default function About() {
   return (
     <section 
       id="about" 
-      className="scroll-mt-4 sm:scroll-mt-24 mx-auto max-w-7xl px-4 pt-8 pb-12 sm:px-6 sm:py-16 tp:px-8 tp:py-14 sl:px-10 sl:py-10 sl:min-h-0 ml:px-6 ml:py-6 ml:min-h-0 lg:grid lg:min-h-[calc(100vh-90px)] lg:place-items-center lg:py-0"
+      className="scroll-mt-[var(--nav-h)] sm:scroll-mt-24 mx-auto max-w-7xl px-4 pt-8 pb-12 sm:px-6 sm:py-16 tp:px-8 tp:py-14 sl:px-10 sl:py-10 sl:min-h-0 ml:px-6 ml:py-6 ml:min-h-0 lg:grid lg:min-h-[calc(100vh-90px)] lg:place-items-center lg:py-0"
     >
       <div className="w-full rounded-[1.5rem] border border-black/10 dark:border-white/10 bg-[#ffe4eb] dark:bg-[#141414] p-6 sm:p-8 md:p-10 tp:p-10 sl:p-8 ml:p-5 lg:rounded-[2rem] lg:p-14">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-[2fr_3fr] md:gap-12 tp:gap-8 sl:grid-cols-[2fr_3fr] sl:gap-10 ml:gap-6">
@@ -101,7 +101,7 @@ export default function About() {
                 return (
                   <div
                     key={item.title}
-                    className="rounded-2xl border border-black/10 dark:border-white/10 bg-neutral-50 dark:bg-[#0F0F0F] p-5 tp:p-4 sl:p-4 ml:p-4"
+                    className="group/feat relative overflow-hidden rounded-2xl border border-black/10 dark:border-white/10 bg-neutral-50 dark:bg-[#0F0F0F] p-5 tp:p-4 sl:p-4 ml:p-4 transition-transform duration-300 ease-out hover:scale-[1.03] active:scale-[1.03]"
                   >
                     <div className="flex items-center gap-3">
                       <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#FB5A74]/10 dark:bg-[#FB5A74]/15 text-[#FF5C8D]">
@@ -114,6 +114,15 @@ export default function About() {
                     <p className="mt-2 text-[13px] leading-relaxed text-neutral-500 dark:text-[#999999]">
                         {item.desc}
                       </p>
+
+                    {/* Bottom glow line — slides in on hover/press */}
+                    <span
+                      className="pointer-events-none absolute bottom-0 left-1/2 h-px w-0 -translate-x-1/2 opacity-0 transition-all duration-500 ease-out group-hover/feat:w-4/5 group-hover/feat:opacity-100 group-active/feat:w-4/5 group-active/feat:opacity-100"
+                      style={{
+                        background: "linear-gradient(90deg, transparent, #FF5C8D, transparent)",
+                        boxShadow: "0 0 12px 1px #FF5C8D",
+                      }}
+                    />
                   </div>
                 );
               })}

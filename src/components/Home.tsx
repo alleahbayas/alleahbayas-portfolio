@@ -5,7 +5,7 @@ export default function Home() {
         <div className="relative w-full">
             <section
                 id="home"
-                className="relative scroll-mt-24 mx-auto flex w-full max-w-7xl flex-col text-center md:min-h-[calc(100vh-110px)] md:flex-row md:items-center md:justify-between md:gap-24 md:px-16 md:py-0 md:text-left tp:flex-col tp:min-h-0 tp:text-center tp:gap-10 tp:pt-16 tp:pb-12 tp:px-8 sl:flex-row sl:items-center sl:justify-between sl:text-left sl:min-h-0 sl:gap-10 sl:px-12 sl:py-10 ml:flex-row ml:items-center ml:justify-between ml:text-left ml:gap-6 ml:px-8 ml:py-8 ml:min-h-0"
+                className="relative scroll-mt-[var(--nav-h)] mx-auto flex w-full max-w-7xl flex-col text-center md:min-h-[calc(100vh-110px)] md:flex-row md:items-center md:justify-between md:gap-24 md:px-16 md:py-0 md:text-left tp:flex-col tp:min-h-0 tp:text-center tp:gap-10 tp:pt-16 tp:pb-12 tp:px-8 sl:flex-row sl:items-center sl:justify-between sl:text-left sl:min-h-0 sl:gap-10 sl:px-12 sl:py-10 ml:flex-row ml:items-center ml:justify-between ml:text-left ml:gap-6 ml:px-8 ml:py-8 ml:min-h-0"
             >
                 {/* IMAGE */}
                 <div className="relative order-1 h-[60vh] min-h-[340px] w-full z-0 md:order-2 md:flex md:h-auto md:w-auto md:-translate-x-20 md:flex-col md:items-center tp:order-1 tp:h-auto tp:min-h-0 tp:w-full tp:translate-x-0 tp:flex tp:flex-col tp:items-center sl:order-2 sl:flex sl:h-auto sl:w-auto sl:flex-col sl:items-center sl:-translate-x-0 ml:order-2 ml:flex ml:h-auto ml:min-h-0 ml:w-auto ml:flex-col ml:items-center ml:translate-x-0">
@@ -46,7 +46,7 @@ export default function Home() {
                     <div className="relative mt-6 flex w-full flex-col items-center gap-3 sm:flex-row sm:justify-center md:mt-12 md:justify-start md:gap-6 tp:mt-10 tp:flex-row tp:justify-center tp:gap-5 sl:mt-8 sl:mb-10 sl:gap-4 ml:mt-8 ml:mb-10 ml:flex-row ml:justify-start ml:gap-3 mln:gap-2">
                         <a
                             href="#projects"
-                            className="flex w-full max-w-xs items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#FB0945] via-[#FF5C8D] to-[#FFE3CD] px-8 py-4 font-inter font-semibold text-white dark:text-black transition hover:scale-[1.02] sm:w-auto tp:w-auto tp:max-w-none sl:w-auto sl:max-w-none sl:whitespace-nowrap sl:px-5 sl:py-3 sl:text-sm ml:px-5 ml:py-2.5 ml:text-sm mln:whitespace-nowrap mln:px-3 mln:py-2 mln:text-xs"
+                            className="flex w-full max-w-xs items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#FB0945] via-[#FF5C8D] to-[#FFE3CD] px-8 py-4 font-inter font-semibold text-white dark:text-black transition hover:text-white hover:scale-[1.02] sm:w-auto tp:w-auto tp:max-w-none sl:w-auto sl:max-w-none sl:whitespace-nowrap sl:px-5 sl:py-3 sl:text-sm ml:px-5 ml:py-2.5 ml:text-sm mln:whitespace-nowrap mln:px-3 mln:py-2 mln:text-xs"
                         >
                             View My Work
                             <span>→</span>
@@ -56,10 +56,11 @@ export default function Home() {
                             <a
                                 href="/alleahbayas-cv.pdf"
                                 download
-                                className="flex items-center justify-center gap-2 rounded-full bg-background text-foreground px-8 py-4 font-inter transition hover:bg-transparent hover:text-black sl:whitespace-nowrap sl:px-5 sl:py-3 sl:text-sm ml:px-5 ml:py-2.5 ml:text-sm mln:whitespace-nowrap mln:px-3 mln:py-2 mln:text-xs"
+                                className="group relative flex items-center justify-center gap-2 overflow-hidden rounded-full bg-background text-foreground px-8 py-4 font-inter transition-colors duration-300 hover:text-black sl:whitespace-nowrap sl:px-5 sl:py-3 sl:text-sm ml:px-5 ml:py-2.5 ml:text-sm mln:whitespace-nowrap mln:px-3 mln:py-2 mln:text-xs"
                             >
-                                Download CV
-                                <span>↓</span>
+                                <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-[#FFE3CD] via-[#FF5C8D] to-[#FB0945] transition-transform duration-500 ease-out group-hover:translate-x-0" />
+                                <span className="relative z-10">Download CV</span>
+                                <span className="relative z-10 transition-transform duration-300 group-hover:translate-y-0.5">↓</span>
                             </a>
                         </div>
                     </div>

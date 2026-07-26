@@ -10,9 +10,22 @@ const NAV_LINKS = [
     { id: "contact", label: "CONTACT" },
 ];
 
+function getDocumentTop(el: HTMLElement) {
+    let top = 0;
+    let node: HTMLElement | null = el;
+    while (node) {
+        top += node.offsetTop;
+        node = node.offsetParent as HTMLElement | null;
+    }
+    return top;
+}
+
 export default function Navbar() {
     const [activeSection, setActiveSection] = useState("home");
     const [mobileOpen, setMobileOpen] = useState(false);
+    const isClickScrolling = useRef(false);
+    const clickTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const navElRef = useRef<HTMLElement>(null);
 
     const navRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
     const [indicator, setIndicator] = useState({
@@ -21,36 +34,69 @@ export default function Navbar() {
     });
 
     useEffect(() => {
+        const navEl = navElRef.current;
+        if (!navEl) return;
+
+        const setNavHeightVar = () => {
+            const height = navEl.getBoundingClientRect().height;
+            document.documentElement.style.setProperty("--nav-h", `${height}px`);
+        };
+
+        setNavHeightVar();
+
+        if (window.location.hash) {
+            const id = window.location.hash.slice(1);
+            requestAnimationFrame(() => {
+                const target = document.getElementById(id);
+                if (target) {
+                    const navHeight = navEl.getBoundingClientRect().height;
+                    const targetTop = getDocumentTop(target) - navHeight;
+                    window.scrollTo({ top: targetTop, behavior: "auto" });
+                    setActiveSection(id);
+                }
+            });
+        }
+
+        const resizeObserver = new ResizeObserver(setNavHeightVar);
+        resizeObserver.observe(navEl);
+
+        window.addEventListener("resize", setNavHeightVar);
+        document.fonts?.ready?.then(setNavHeightVar);
+
+        return () => {
+            resizeObserver.disconnect();
+            window.removeEventListener("resize", setNavHeightVar);
+        };
+    }, []);
+
+    useEffect(() => {
         const sections = NAV_LINKS
             .map((link) => document.getElementById(link.id))
             .filter((el): el is HTMLElement => el !== null);
 
-        const handleScroll = () => {
-            if (window.scrollY < 10) {
-                setActiveSection(sections[0]?.id ?? "home");
-                return;
-            }
+        if (sections.length === 0) return;
 
-            const scrollPos = window.scrollY + window.innerHeight / 2;
+        const observer = new IntersectionObserver(
+            (entries) => {
+                if (isClickScrolling.current) return;
 
-            let current = sections[0]?.id ?? "home";
-            for (const section of sections) {
-                if (section.offsetTop <= scrollPos) {
-                    current = section.id;
+                const visible = entries
+                    .filter((e) => e.isIntersecting)
+                    .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+                if (visible.length > 0) {
+                    setActiveSection(visible[0].target.id);
                 }
+            },
+            {
+                rootMargin: "-35% 0px -55% 0px",
+                threshold: [0, 0.25, 0.5, 0.75, 1],
             }
-            setActiveSection(current);
-        };
+        );
 
-        window.addEventListener("scroll", handleScroll);
-        const raf = requestAnimationFrame(handleScroll);
-        window.addEventListener("load", handleScroll);
+        sections.forEach((section) => observer.observe(section));
 
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-            window.removeEventListener("load", handleScroll);
-            cancelAnimationFrame(raf);
-        };
+        return () => observer.disconnect();
     }, []);
 
     useEffect(() => {
@@ -77,14 +123,41 @@ export default function Navbar() {
         };
     }, [mobileOpen]);
 
-    const handleMobileLinkClick = (id: string) => {
+    const handleNavClick = (id: string, e?: React.MouseEvent) => {
+        e?.preventDefault();
+
+        const target = document.getElementById(id);
+        const navEl = navElRef.current;
+        if (!target || !navEl) return;
+
         setActiveSection(id);
+        isClickScrolling.current = true;
+
+        const navHeight = navEl.getBoundingClientRect().height;
+        const targetTop = getDocumentTop(target) - navHeight;
+
+        window.scrollTo({ top: targetTop, behavior: "smooth" });
+
+        // Keep the CSS var in sync too, in case anything else depends on it
+        document.documentElement.style.setProperty("--nav-h", `${navHeight}px`);
+
+        // Update the URL hash without letting the browser do its own jump
+        history.pushState(null, "", `#${id}`);
+
+        if (clickTimeout.current) clearTimeout(clickTimeout.current);
+        clickTimeout.current = setTimeout(() => {
+            isClickScrolling.current = false;
+        }, 900);
+    };
+
+    const handleMobileLinkClick = (id: string, e?: React.MouseEvent) => {
+        handleNavClick(id, e);
         setMobileOpen(false);
     };
 
     return (
         <>
-            <nav className="sticky top-0 z-50 hidden md:flex sl:flex ml:flex items-center px-6 md:px-6 lg:px-8 xl:px-16 2xl:px-30 sl:px-8 ml:px-6 py-3 md:py-4 lg:py-5 sl:py-5 ml:py-4 font-mono font-medium bg-[#f8345e]/50 backdrop-blur-md dark:bg-[#0F0F0F] dark:backdrop-blur-none text-[13px]">
+            <nav ref={navElRef} className="sticky top-0 z-50 hidden md:flex sl:flex ml:flex items-center px-6 md:px-6 lg:px-8 xl:px-16 2xl:px-30 sl:px-8 ml:px-6 py-3 md:py-4 lg:py-5 sl:py-5 ml:py-4 font-mono font-medium bg-[#f8345e]/50 backdrop-blur-md dark:bg-[#0F0F0F] dark:backdrop-blur-none text-[13px]">
                 <div className="flex-1 flex-shrink-0">
                     <p className="whitespace-nowrap text-white dark:text-foreground text-[11px] md:text-[11px] lg:text-[13px] sl:text-[12px] ml:text-[10px]">A. BAYAS</p>
                 </div>
@@ -107,7 +180,7 @@ export default function Navbar() {
                                     navRefs.current[link.id] = el;
                                 }}
                                 href={`#${link.id}`}
-                                onClick={() => setActiveSection(link.id)}
+                                onClick={(e) => handleNavClick(link.id, e)}
                                 className={`relative inline-block pb-0 sl:pb-1 ml:pb-0.5 text-[10px] md:text-[10px] lg:text-[11px] xl:text-[13px] sl:text-[12px] ml:text-[9px] transition-colors duration-300 ease-in-out ${
                                     activeSection === link.id
                                         ? "text-[#FFF9D2] dark:text-[#FFF9D2]"
@@ -137,6 +210,7 @@ export default function Navbar() {
                     <div className="rounded-full bg-gradient-to-r from-[#FFE3CD] via-[#FF5C8D] to-[#FB0945] p-[2px] xl:p-[3px]">
                         <a
                             href="#contact"
+                            onClick={(e) => handleNavClick("contact", e)}
                             className="block rounded-full bg-background dark:bg-[#0A0A0A] text-foreground px-3 xl:px-5 py-1.5 xl:py-2 text-[10px] md:text-[10px] lg:text-[11px] xl:text-[13px] sl:px-2.5 sl:py-1 sl:text-[12px] ml:px-3 ml:py-1.5 ml:text-[9px] transition-colors duration-300 hover:bg-gradient-to-r from-[#FFE3CD] via-[#FF5C8D] to-[#FB0945] hover:text-white"
                         >
                             Let's Connect
@@ -190,7 +264,7 @@ export default function Navbar() {
                         <li key={link.id}>
                             <a
                                 href={`#${link.id}`}
-                                onClick={() => handleMobileLinkClick(link.id)}
+                                onClick={(e) => handleMobileLinkClick(link.id, e)}
                                 className={`transition-colors duration-300 ease-in-out ${
                                     activeSection === link.id
                                         ? "text-[#FFF9D2] dark:text-[#FFF9D2]"
@@ -219,7 +293,7 @@ export default function Navbar() {
                     <div className="rounded-full bg-gradient-to-r from-[#FFE3CD] via-[#FF5C8D] to-[#FB0945] p-[3px]">
                         <a
                             href="#contact"
-                            onClick={() => handleMobileLinkClick("contact")}
+                            onClick={(e) => handleMobileLinkClick("contact", e)}
                             className="block text-center rounded-full bg-background dark:bg-[#0A0A0A] text-foreground px-5 py-2 transition-colors duration-300 hover:bg-gradient-to-r from-[#FFE3CD] via-[#FF5C8D] to-[#FB0945] hover:text-white"
                         >
                             Let's Connect
