@@ -103,7 +103,7 @@ export default function Contact() {
           <div className="mb-4 flex flex-wrap justify-center gap-3">
             {/* GITHUB */}
             <a
-              href="https://github.com/YOUR_USERNAME"
+              href="https://github.com/alleahbayas"
               target="_blank"
               rel="noopener noreferrer"
               className="group relative flex items-center gap-2 overflow-hidden rounded-lg border border-black/10 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 px-5 sm:px-7.5 py-2.5 text-sm text-foreground transition-colors duration-300 hover:text-white hover:border-transparent"
@@ -115,7 +115,7 @@ export default function Contact() {
 
             {/* INSTAGRAM */}
             <a
-              href="https://instagram.com/YOUR_USERNAME"
+              href="https://instagram.com/im_alleahmarie"
               target="_blank"
               rel="noopener noreferrer"
               className="group relative flex items-center gap-2 overflow-hidden rounded-lg border border-black/10 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 px-5 sm:px-7.5 py-2.5 text-sm text-foreground transition-colors duration-300 hover:text-white hover:border-transparent"
@@ -127,7 +127,7 @@ export default function Contact() {
 
             {/* LINKEDIN */}
             <a
-              href="https://linkedin.com/in/YOUR_USERNAME"
+              href="https://linkedin.com/in/alleah-marie-bayas"
               target="_blank"
               rel="noopener noreferrer"
               className="group relative flex items-center gap-2 overflow-hidden rounded-lg border border-black/10 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 px-5 sm:px-7.5 py-2.5 text-sm text-foreground transition-colors duration-300 hover:text-white hover:border-transparent"

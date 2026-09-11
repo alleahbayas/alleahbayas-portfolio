@@ -40,10 +40,7 @@ const features: Feature[] = [
 ];
 
 export default function About() {
-  // Tracks which single card has been tapped/clicked so its glow stays on
-  // even after the press/hover ends. Tapping a different card moves the glow
-  // to that one instead (only one card glows at a time). Tapping the same
-  // card again turns it off.
+  
   const [activeCard, setActiveCard] = useState<string | null>(null);
 
   const toggleCard = (title: string) => {
