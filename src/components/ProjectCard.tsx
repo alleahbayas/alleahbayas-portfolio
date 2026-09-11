@@ -3,10 +3,6 @@
 import { useId, useState, useSyncExternalStore } from "react";
 import { Icons, IconColors } from "@/lib/Icons";
 
-// A minimal shared store so every ProjectCard instance on the page agrees on
-// which single card is currently "active" (glow toggled on by a tap/click).
-// This lives at module scope, so it's shared across all instances without
-// needing to lift state up into a parent component.
 let activeCardId: string | null = null;
 const listeners = new Set<() => void>();
 
@@ -25,12 +21,14 @@ function getActiveCardId() {
 }
 
 type ProjectCardProps = {
+    slug: string;
     title: string;
     description: string;
     tags: string[];
+    link?: string;
 };
 
-export default function ProjectCard({ title, description, tags }: ProjectCardProps) {
+export default function ProjectCard({ slug, title, description, tags, link }: ProjectCardProps) {
 
   const cardId = useId();
   const currentActiveId = useSyncExternalStore(
@@ -40,8 +38,16 @@ export default function ProjectCard({ title, description, tags }: ProjectCardPro
   );
   const isCardActive = currentActiveId === cardId;
 
-  const toggleCard = () => {
+  const destination = link ?? `/projects/${slug}`;
+  const isExternal = Boolean(link);
+
+  const handleCardClick = () => {
     setActiveCardId(isCardActive ? null : cardId);
+    if (isExternal) {
+      window.open(destination, "_blank", "noopener,noreferrer");
+    } else {
+      window.location.href = destination;
+    }
   };
 
   const [activeTag, setActiveTag] = useState<string | null>(null);
@@ -52,13 +58,14 @@ export default function ProjectCard({ title, description, tags }: ProjectCardPro
 
   return (
     <div
-      onClick={toggleCard}
-      role="button"
+      onClick={handleCardClick}
+      role="link"
+      aria-label={`Open ${title}${isExternal ? " in a new tab" : ""}`}
       tabIndex={0}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
-          toggleCard();
+          handleCardClick();
         }
       }}
       className="group relative h-full flex flex-col rounded-2xl overflow-hidden border border-[#B8235A] dark:border-neutral-800 bg-card cursor-pointer transition-transform duration-300 ease-out hover:-translate-y-1.5 hover:scale-[1.02] active:scale-[1.02]"
@@ -94,7 +101,6 @@ export default function ProjectCard({ title, description, tags }: ProjectCardPro
                 <span className="text-sm">{Icons[tag]}</span>
                 {tag}
 
-                {/* Bottom glow line — slides in on hover/press, or stays on after a tap until tapped again, colored to match the icon */}
                 <span
                   className={`pointer-events-none absolute bottom-0 left-1/2 h-[1.5px] -translate-x-1/2 transition-all duration-500 ease-out group-hover/tag:w-4/5 group-hover/tag:opacity-100 ${
                     isActive ? "w-4/5 opacity-100" : "w-0 opacity-0"
@@ -110,7 +116,6 @@ export default function ProjectCard({ title, description, tags }: ProjectCardPro
         </div>
       </div>
 
-      {/* Bottom glow line only — fades in and slides into place on hover, or stays on after a tap until tapped again */}
       <span
         className={`pointer-events-none absolute bottom-0 left-1/2 h-px -translate-x-1/2 transition-all duration-500 ease-out group-hover:w-3/4 group-hover:opacity-100 ${
           isCardActive ? "w-3/4 opacity-100" : "w-0 opacity-0"

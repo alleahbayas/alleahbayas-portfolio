@@ -44,9 +44,11 @@ export default function AllProjects() {
                 {projects.map((project, index) => (
                     <Reveal key={project.slug} direction="up" delay={index * 100} distance={24}>
                         <ProjectCard
+                            slug={project.slug}
                             title={project.title}
                             description={project.description}
                             tags={project.tags}
+                            link={project.link}
                         />
                     </Reveal>
                 ))}

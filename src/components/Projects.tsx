@@ -37,9 +37,11 @@ export default function Projects() {
           {projects.slice(0,2).map((project) => (
             <ProjectCard
               key={project.slug}
+              slug={project.slug}
               title={project.title}
               description={project.description}
               tags={project.tags}
+              link={project.link}
               />
           ))}
         </div>
